@@ -13,7 +13,7 @@
 # remember when we find a Y, find words with that letter NOT IN that place.
 # remember when we find a Green, find words with that letter IN that place.
 
-# Imports
+# Imports # Get rid of useless imports.
 from string import printable
 import sys
 import xlrd
