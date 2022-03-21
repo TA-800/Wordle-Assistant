@@ -13,20 +13,6 @@
 # remember when we find a Y, find words with that letter NOT IN that place.
 # remember when we find a Green, find words with that letter IN that place.
 
-# BUGS
-    # buggy words
-        # start guess with speed for words like crepe, steal, erase, abide
-    # word = elegy, guess = eerie, o.p. = GYbbB
-    # we want to make sure that suggestions are reduced to words starting with E (works till here) and ALSO have another E but not in the same place (but we also get suggestions with just one E which is unwanted, fix!)
-    # fixable by making regex count occurences of e's but making sure they are NOT REPETITIONS.
-    # double letter words
-    # e.g. word is POEMS, start guess with THESE, program will bug out because one e is in the right place, the other in NOT IN WORD COMPLETELY!
-    # word = david, guess = daddy, o.p. = bygbb
-
-# Best test example: eerie, start with crime
-# 2nd test: elegy, start with eerie
-# Watch-outs: repetits, negates etc.
-
 # Imports
 from string import printable
 import sys
@@ -41,10 +27,9 @@ letters_in_place = [] # green
 letters_in_word = [] # yellow
 letters_not_in_word = [] # gray/black
 negate = []
-pat = [".", ".", ".", ".", "."] # T R E E S
+pat = [".", ".", ".", ".", "."]
 found = False
 
-# Info allocator needs to APPEND indices of letters in word but not in place
 def info_allocator(word, info):
     if len(info) != 5:
         print("Wrong input. Terminated.")
@@ -78,7 +63,6 @@ def checkRepetition(k):
                     count += 1
             return count
 
-# Crime/Crane -> optimal word for most information (info theory)
 print("Start")
 
 while True:
@@ -101,9 +85,7 @@ while True:
     print("".join(pat))
     allowed_words_fstring = "".join(re.findall("".join(pat) + "\n", allowed_words_fstring)) + "\n" # Include only those words with given letters in place
 
-    # word = elegy, guess = eerie
-    # o.p. = gybbb
-    # in place = [[e,0]], in word = [[..., ...], [e,1], [..., ...]], not in word = [[e,-1]] || Negatiion (not in word) works fine, but repetition needs to be handled.
+    # in place = [[e,0]], in word = [[..., ...], [e,1], [..., ...]], not in word = [[e,-1]] || Negatiion (not in word) works fine, but repetition needs to be handled. EDIT: HANDLED.
     for k in letters_in_word:
         let = f"{k[0]}"
         if 1 + checkRepetition(k) > 1:
