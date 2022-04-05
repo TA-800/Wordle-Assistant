@@ -13,6 +13,7 @@
 # remember when we find a Y, find words with that letter NOT IN that place.
 # remember when we find a Green, find words with that letter IN that place.
 
+
 # Imports # Get rid of useless imports.
 from string import printable
 import sys
@@ -30,6 +31,7 @@ negate = []
 pat = [".", ".", ".", ".", "."]
 found = False
 
+# Info allocator needs to APPEND indices of letters in word but not in place
 def info_allocator(word, info):
     if len(info) != 5:
         print("Wrong input. Terminated.")
@@ -70,8 +72,10 @@ while True:
     word = ""
     while info == "retry":
         word = input("Word input: ").lower()
-        info = input("-> ") # e.g. bgybb
-    if word.lower() == "true":
+        info = input("-> ").lower() # e.g. bgybb
+        if info == "end":
+            break
+    if info == "end":
         break
     info_allocator(word, info)
     doubleLetter_Fixer()
@@ -85,7 +89,6 @@ while True:
     print("".join(pat))
     allowed_words_fstring = "".join(re.findall("".join(pat) + "\n", allowed_words_fstring)) + "\n" # Include only those words with given letters in place
 
-    # in place = [[e,0]], in word = [[..., ...], [e,1], [..., ...]], not in word = [[e,-1]] || Negatiion (not in word) works fine, but repetition needs to be handled. EDIT: HANDLED.
     for k in letters_in_word:
         let = f"{k[0]}"
         if 1 + checkRepetition(k) > 1:
@@ -108,8 +111,9 @@ while True:
 
     for a in printable_list:
         print(f"\t{a}")
-    print(letters_not_in_word,"-",letters_in_word,"-", "".join(pat))
-    letters_in_word = [] # clearing letters_in_word out for optimization I guess? We don't have to filter the previously filtered in letters again for one of the above loops.
+    print("".join(pat))
+    letters_in_word = [] # clearing letters (in_word and in_place) out for optimization, I guess? We don't have to filter the previously filtered in letters again for one of the above loops.
+    letters_in_place = [] # this also fixes some bugs with repeated letters.
 
 print("Success.")
 # Close file
