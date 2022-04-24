@@ -38,7 +38,7 @@ def restart_on_click():
     else:
         words_label.destroy()
     # Reset size
-    global height, original_height # Unfortunately it looks like we can't pass parameters since this function is only passed in (not called with ()) so we need to reference them through global keyword
+    global height, original_height # We can't pass parameters since this function is only passed in (not called with ()) so we need to reference variables through global keyword
     if height != original_height:
         height = original_height
         root.geometry(f'{width}x{height}')
@@ -46,7 +46,7 @@ def restart_on_click():
 
     
 def filterList(e):
-    global words_label, new_label # we need to save object value of labels to be able to completely destroy it
+    global words_label, new_label
     # get reads from 1.0 to end-1c.
     # 1.0 -> line 1 . character 0 --> start from first character in first line.
     # end-2c -> end at whatever is defined as end (the default) but 2 chars less/before (this is done to remove \n which is last char).
@@ -91,7 +91,7 @@ root.configure(bg="black") # Set background color
 root.iconbitmap("wordle_icon.ico") # Set icon
 root.resizable(False, False) # Restrict resizing
 
-# Giving columns sizes. For understanding, visit: https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter
+# Understanding source: https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter
 for i in range(2):
     root.grid_columnconfigure(i, weight=1)
 for i in range(5):
