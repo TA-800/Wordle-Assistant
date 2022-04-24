@@ -28,7 +28,7 @@ def info_allocator(word, info):
             sys.exit()
     return letters_in_place, letters_in_word
 
-def doubleLetter_Fixer(letters_in_place, letters_in_word): # in place = [[e,4], [e,3]], not in word = [e, e]
+def doubleLetter_Fixer(letters_in_place, letters_in_word):
     global letters_not_in_word
     for i in letters_not_in_word:
         for j in letters_in_place:
