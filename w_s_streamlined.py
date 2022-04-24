@@ -34,7 +34,6 @@ def doubleLetter_Fixer(letters_in_place, letters_in_word): # in place = [[e,4], 
         for j in letters_in_place:
             if i[0] == j[0]:
                 pat[i[1]] = f"[^{i[0]}]" if pat[i[1]] == "." else pat[i[1]].replace(pat[i[1]], pat[i[1]][:2] + f"{i[0]}" + pat[i[1]][2:])
-                #letters_to_remove_later.append(letters_not_in_word.pop(letters_not_in_word.index(i)))
                 letters_not_in_word.remove(i)
         for j in letters_in_word:
             if i[0] == j[0]:
