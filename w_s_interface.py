@@ -78,7 +78,7 @@ def filterList(e):
     info_tb.delete("1.0", END)
 
     # Resize window
-    global height, extended_height # Unfortunately it looks like we can't pass parameters since this function is only passed in (not called with ()) so we need to reference them through global keyword
+    global height, extended_height
     if height != extended_height:
         height = extended_height
         root.geometry(f'{width}x{height}')
