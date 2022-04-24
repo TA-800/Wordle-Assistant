@@ -7,7 +7,6 @@ allowed_words_OGstring = allowed_words_fstring # Save in case for restart
 allowed_words.close()
 
 letters_not_in_word = [] # gray/black
-letters_repeatable = {}
 pat = [".", ".", ".", ".", "."]
 
 
@@ -30,24 +29,17 @@ def info_allocator(word, info):
     return letters_in_place, letters_in_word
 
 def doubleLetter_Fixer(letters_in_place, letters_in_word): # in place = [[e,4], [e,3]], not in word = [e, e]
-    global letters_not_in_word, letters_to_remove_later
+    global letters_not_in_word
     for i in letters_not_in_word:
         for j in letters_in_place:
             if i[0] == j[0]:
                 pat[i[1]] = f"[^{i[0]}]" if pat[i[1]] == "." else pat[i[1]].replace(pat[i[1]], pat[i[1]][:2] + f"{i[0]}" + pat[i[1]][2:])
                 #letters_to_remove_later.append(letters_not_in_word.pop(letters_not_in_word.index(i)))
                 letters_not_in_word.remove(i)
-                if i[0] in letters_repeatable.keys():
-                    letters_repeatable[i[0]] += 1
-                else:
-                    letters_repeatable[i[0]] = 1
         for j in letters_in_word:
             if i[0] == j[0]:
                 letters_not_in_word.remove(i)
-                if i[0] in letters_repeatable.keys():
-                    letters_repeatable[i[0]] += 1
-                else:
-                    letters_repeatable[i[0]] = 1
+
 
 def checkRepetition(k, letters_in_place):
             # k = element of letters in word
