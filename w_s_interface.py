@@ -38,7 +38,7 @@ def restart_on_click():
     else:
         words_label.destroy()
     # Reset size
-    global height, original_height # We can't pass parameters since this function is only passed in (not called with ()) so we need to reference variables through global keyword
+    global height, original_height # we can't pass parameters since this function is only passed in (not called with ()) so we need to reference variables through global keyword
     if height != original_height:
         height = original_height
         root.geometry(f'{width}x{height}')
