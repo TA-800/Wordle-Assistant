@@ -1,7 +1,7 @@
 # Wordle-Assistant
 Repository for the Wordle Assistant Python Bot (now with a simple GUI interface!).
 
-If you find yourself not being very good at the popular word game [Wordle](https://www.nytimes.com/games/wordle/index.html), then you can use this bot to help yourself win some of the games!
+If you find yourself not being very good at the popular word game [Wordle](https://www.nytimes.com/games/wordle/index.html), then you can use this app to help yourself win some of the games!
 
 ## How to use
 
